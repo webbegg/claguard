@@ -114,7 +114,7 @@ Then either stop that process or change ClaGuard's port in **Settings → OTel**
 
 ## Still stuck?
 
-Open an issue on [GitHub](https://github.com/claguard/claguard/issues) and include:
+Open an issue on [GitHub](https://github.com/webbegg/claguard/issues) and include:
 - Your OS and version
 - ClaGuard version (visible in Settings)
 - A description of what you expected vs. what happened

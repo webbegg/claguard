@@ -22,7 +22,7 @@ export default defineConfig({
 
     nav: [
       { text: 'Docs',   link: '/guide/getting-started' },
-      { text: 'GitHub', link: 'https://github.com/claguard/claguard' },
+      { text: 'GitHub', link: 'https://github.com/webbegg/claguard' },
     ],
 
     sidebar: {
@@ -40,7 +40,7 @@ export default defineConfig({
     },
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/claguard/claguard' },
+      { icon: 'github', link: 'https://github.com/webbegg/claguard' },
     ],
 
     search: {

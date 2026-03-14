@@ -2,33 +2,7 @@
 import { ref, onMounted, onUnmounted } from "vue";
 import TerminalChrome from "./TerminalChrome.vue";
 
-// ── Download platforms ────────────────────────────────────────────────────────
-const platforms = [
-  {
-    id: "mac-arm",
-    label: "macOS (Apple Silicon)",
-    href: "https://github.com/claguard/claguard/releases/latest/download/ClaGuard-arm64.dmg",
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98l-.09.06c-.22.14-2.15 1.26-2.13 3.75.03 2.99 2.63 3.99 2.65 4l-.08.28zM13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>`,
-  },
-  {
-    id: "mac-intel",
-    label: "macOS (Intel)",
-    href: "https://github.com/claguard/claguard/releases/latest/download/ClaGuard-x64.dmg",
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98l-.09.06c-.22.14-2.15 1.26-2.13 3.75.03 2.99 2.63 3.99 2.65 4l-.08.28zM13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>`,
-  },
-  {
-    id: "windows",
-    label: "Windows",
-    href: "https://github.com/claguard/claguard/releases/latest/download/ClaGuard-Setup.exe",
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M3 5.557L10.333 4.5V11.5H3V5.557zm0 12.886L10.333 19.5V12.5H3v5.943zM11.167 4.371L21 3V11.5H11.167V4.371zm0 15.258L21 21V12.5H11.167v7.129z"/></svg>`,
-  },
-  {
-    id: "linux",
-    label: "Linux (AppImage)",
-    href: "https://github.com/claguard/claguard/releases/latest/download/ClaGuard.AppImage",
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12.504 0c-.155 0-.315.008-.48.021-4.226.333-3.105 4.807-3.17 6.298-.076 1.092-.3 1.953-1.05 3.02-.885 1.051-2.127 2.75-2.716 4.521-.278.832-.41 1.684-.287 2.489.303 1.998 1.514 3.199 3.216 3.9 1.354.54 3.065.854 4.972 1.099 3.956.517 8.107.152 8.107.152.498 0 1.315.652 1.315-.056 0-.065-.017-.13-.048-.19a.562.562 0 0 0-.13-.154l-.025-.017-5.517-4.116a.3.3 0 0 0-.175-.057h-.003a.282.282 0 0 0-.288.242.304.304 0 0 0 .112.29l5.518 4.119.003.002a.312.312 0 0 0 .064.04l.022.01c-.014-.003-4.15.36-8.054-.15a21.13 21.13 0 0 1-4.805-1.063c-1.537-.612-2.59-1.625-2.85-3.35-.105-.694-.003-1.476.265-2.29.567-1.66 1.778-3.32 2.634-4.339.877-1.142 1.133-2.083 1.21-3.262.057-1.305.051-5.12 2.79-5.34a5.27 5.27 0 0 1 .404-.017c1.75 0 3.354.938 5.03 3.154l4.293 5.817.002.002c.262.36.534.71.827 1.04.29.317.594.611.925.867.339.264.71.492 1.132.65.453.172.966.255 1.547.218l.003-.001c.386-.028.74-.1 1.063-.22l.051-.02c.247-.1.47-.224.664-.374l.015-.013a1.995 1.995 0 0 0 .439-.527c.225-.393.316-.884.25-1.4l-.003-.02-.004-.02-.006-.02c-.17-.53-.58-.997-1.114-1.371-.29-.2-.608-.366-.952-.5l-.026-.01c-.363-.133-.74-.22-1.128-.258a5.765 5.765 0 0 0-.624-.025c-.47 0-.92.06-1.33.176a4.83 4.83 0 0 0-.597.213l-.026.012-.024.012-.005.002-4.377-5.915.002.002C16.025.98 14.147 0 12.504 0z"/></svg>`,
-  },
-];
+
 
 // ── FAQ ───────────────────────────────────────────────────────────────────────
 const faqItems = [
@@ -153,12 +127,12 @@ const demoLines = [
           Set limits, get notified, stay in control — all from your system tray.
         </p>
         <div class="hero-actions">
-          <a href="#download" class="hero-btn-primary">Download Free</a>
+          <a href="https://github.com/webbegg/claguard/releases" class="hero-btn-primary">Follow Updates</a>
           <a href="/guide/getting-started" class="hero-btn-secondary"
             >Read the docs →</a
           >
         </div>
-        <p class="hero-note">macOS · Windows · Linux — free to download</p>
+        <p class="hero-note">Follow releases for download updates</p>
       </div>
     </section>
 
@@ -393,40 +367,19 @@ const demoLines = [
       </div>
     </section>
 
-    <!-- ══ DOWNLOAD ══════════════════════════════════════════════════════════ -->
+    <!-- ══ COMING SOON ══════════════════════════════════════════════════════════ -->
     <section id="download" class="download-section">
-      <h2 class="download-heading">Download ClaGuard</h2>
-      <p class="download-sub">Free to download. No account required.</p>
-      <div class="download-grid">
+      <h2 class="download-heading">Coming Soon</h2>
+      <p class="download-sub">ClaGuard is not yet available for download.</p>
+      <p class="download-sub">
+        Follow
         <a
-          v-for="p in platforms"
-          :key="p.id"
-          :href="p.href"
-          class="download-card"
-        >
-          <span class="download-card-icon" v-html="p.icon"></span>
-          <span class="download-card-label">{{ p.label }}</span>
-          <svg
-            class="download-card-arrow"
-            viewBox="0 0 24 24"
-            width="16"
-            height="16"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-          >
-            <path d="M12 5v14M5 12l7 7 7-7" />
-          </svg>
-        </a>
-      </div>
-      <p class="download-github">
-        Or view all releases on
-        <a
-          href="https://github.com/claguard/claguard/releases"
+          href="https://github.com/webbegg/claguard/releases"
           target="_blank"
           rel="noopener"
-          >GitHub</a
+          >GitHub releases</a
         >
+        to be notified when it's ready.
       </p>
     </section>
 
@@ -469,7 +422,7 @@ const demoLines = [
         <h2 class="footer-cta-heading">
           Stop guessing what Claude Code costs you.
         </h2>
-        <a href="#download" class="hero-btn-primary">Download Free</a>
+        <a href="https://github.com/webbegg/claguard/releases" class="hero-btn-primary">Follow Updates</a>
       </div>
     </section>
 
@@ -485,19 +438,19 @@ const demoLines = [
         <div class="footer-links">
           <a href="/guide/getting-started">Docs</a>
           <a
-            href="https://github.com/claguard/claguard"
+            href="https://github.com/webbegg/claguard"
             target="_blank"
             rel="noopener"
             >GitHub</a
           >
           <a
-            href="https://github.com/claguard/claguard/releases"
+            href="https://github.com/webbegg/claguard/releases"
             target="_blank"
             rel="noopener"
             >Releases</a
           >
           <a
-            href="https://github.com/claguard/claguard/issues"
+            href="https://github.com/webbegg/claguard/issues"
             target="_blank"
             rel="noopener"
             >Issues</a
