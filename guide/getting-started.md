@@ -1,10 +1,11 @@
 # Getting Started
 
-ClaGuard is a lightweight desktop app that monitors your Claude Code usage in real time. It connects to Claude Code via OpenTelemetry and alerts you when you approach your cost or token limits.
+ClaGuard is a lightweight desktop app that monitors your Claude Code usage by scraping data directly from claude.ai. It alerts you when you approach your cost or token limits.
 
 ## Requirements
 
 - [Claude Code](https://claude.ai/code) installed and configured
+- A claude.ai account (Team or Enterprise plan required for usage data)
 - macOS 12+, Windows 10+, or a modern Linux distribution
 
 ## Installation
@@ -45,28 +46,17 @@ When ClaGuard opens for the first time, the **Setup Wizard** walks you through t
 
 Read the overview of what ClaGuard does and click **Get Started**.
 
-### Step 2 — Connect to Claude Code
+### Step 2 — Connect to claude.ai
 
-ClaGuard needs to write a small configuration block to `~/.claude/settings.json` to enable Claude Code's built-in OpenTelemetry exporter.
+ClaGuard needs to sign in to your claude.ai account to scrape usage data. Click **Open Browser** to launch a browser window where you can sign in to Claude.
 
-The change looks like this:
-
-```json
-{
-  "openTelemetry": {
-    "enabled": true,
-    "endpoint": "http://localhost:4318"
-  }
-}
-```
-
-Click **Allow** to apply it. ClaGuard handles this automatically — no shell exports or `.env` files needed.
+If you don't see your account, click **Refresh** after signing in. Select the account you want to track and click **Done**.
 
 ### Step 3 — Done
 
 ClaGuard is now running. A small icon appears in your menu bar (macOS) or system tray (Windows/Linux).
 
-Start a Claude Code session and watch your usage appear in the dashboard.
+ClaGuard will automatically sync your usage every 10 minutes.
 
 ## Opening the Dashboard
 

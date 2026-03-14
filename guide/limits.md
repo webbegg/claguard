@@ -26,11 +26,12 @@ You can add as many thresholds as you want or as few as one.
 
 ## How Usage is Measured
 
-ClaGuard receives usage data via OpenTelemetry from Claude Code. Each OTLP metric batch includes:
+ClaGuard scrapes usage data directly from claude.ai. Each sync captures:
 
 - Input tokens used
-- Output tokens used
-- Cost computed by Claude Code (in USD)
+- Output tokens used  
+- Cost computed by Claude (in USD)
+- For Team plans: session and weekly limit utilization
 
 Usage is aggregated into daily and monthly windows and stored locally in a SQLite database in your app data folder.
 

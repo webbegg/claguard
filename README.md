@@ -4,7 +4,7 @@ ClaGuard monitors every token and dollar you spend with Claude Code. Set limits,
 
 ## Features
 
-- **Real-time monitoring** — Tracks every token and cost in real-time via OpenTelemetry
+- **Claude.ai sync** — Scrapes your usage directly from claude.ai (supports Team & Enterprise plans)
 - **Flexible limits** — Set daily/monthly limits in USD or raw token count
 - **Native notifications** — Get alerted when you cross configured thresholds (50%, 80%, 100%)
 - **Tray icon** — Color-coded budget health visible at a glance
@@ -19,7 +19,7 @@ ClaGuard monitors every token and dollar you spend with Claude Code. Set limits,
 
 ## Status
 
-ClaGuard is not yet available for download. Follow [GitHub releases](https://github.com/webbegg/claguard/releases) to be notified when it's ready.
+ClaGuard is not yet available for download. Follow [@webbegg/claguard](https://github.com/webbegg/claguard) on GitHub to be notified when it's ready.
 
 ## Links
 

@@ -8,31 +8,35 @@ Yes. ClaGuard is free to download and use. No accounts, no subscriptions.
 
 ### Does ClaGuard send my data anywhere?
 
-No. All usage data is stored locally in a SQLite database on your machine. ClaGuard makes no network requests except to receive OTLP data from Claude Code on `localhost`.
+No. All usage data is stored locally in a SQLite database on your machine. ClaGuard makes no network requests except to scrape usage data from claude.ai for your account.
 
-### Does ClaGuard work with Claude.ai (the web app)?
+### Does ClaGuard work with Claude Code (the CLI)?
 
-No — ClaGuard only works with **Claude Code** (the CLI). It relies on the OpenTelemetry metrics that Claude Code exports, which are not available from the web app.
+ClaGuard monitors your claude.ai usage (Team/Enterprise plans). It does not directly track Claude Code CLI usage — it tracks what claude.ai shows in your account dashboard.
 
 ---
 
 ## Setup
 
-### I approved the OTel config but no data is showing up.
+### I signed in but no data is showing up.
 
 A few things to check:
 
-1. **Restart Claude Code** after ClaGuard writes the config. Claude Code reads `~/.claude/settings.json` at startup.
-2. **Check the port.** ClaGuard listens on port `4318` by default. If something else is on that port, go to **Settings → OTel** and change it — then update `~/.claude/settings.json` to match.
-3. **Run a Claude Code command.** Usage data only flows when Claude Code is actively processing a prompt. Open a session and send a message.
+1. **Make sure you're on a Team or Enterprise plan.** Usage data is only available on paid plans.
+2. **Check the sync status.** Go to Settings → Claude.ai Sync to see if the last sync was successful.
+3. **Click "Sync Now"** to manually trigger a sync and see if data appears.
 
-### I see "Disconnected" in Settings but the config looks right.
+### I'm having trouble signing in.
 
-The "Connected" indicator lights up when ClaGuard has received at least one OTLP payload. Send a message in Claude Code — after a moment the status should switch to **Connected**.
+If the browser window doesn't open or you can't sign in:
 
-### Can I use a different port?
+1. Try disabling **headless mode** in Settings → Claude.ai Sync
+2. Make sure you grant browser permissions when prompted
+3. Try logging out and back in through the ClaGuard settings
 
-Yes. Go to **Settings → OTel**, change the port, and click **Save**. ClaGuard will update `~/.claude/settings.json` automatically.
+### Can I use a different sync interval?
+
+Yes. Go to **Settings → Claude.ai Sync** and adjust the interval (default is 10 minutes).
 
 ---
 
@@ -70,7 +74,7 @@ Quit ClaGuard, delete the `usage.db` file, and relaunch. Your limits and setting
 
 ### Where are my settings stored?
 
-Settings (limits, thresholds, tray config, OTel port) are stored in:
+Settings (limits, thresholds, tray config, sync settings) are stored in:
 
 | Platform | Path |
 |----------|------|
@@ -96,19 +100,9 @@ Then try opening it again.
 
 Install the [AppIndicator and KStatusNotifierItem Support](https://extensions.gnome.org/extension/615/appindicator-support/) GNOME Shell extension, then log out and back in.
 
-### Something else is on port 4318.
+### The browser won't launch or gets blocked.
 
-Find what's using it:
-
-```bash
-# macOS / Linux
-lsof -i :4318
-
-# Windows (PowerShell)
-netstat -ano | findstr :4318
-```
-
-Then either stop that process or change ClaGuard's port in **Settings → OTel**.
+Try disabling **headless mode** in Settings → Claude.ai Sync. Some systems require the browser to be visible for claude.ai to work properly.
 
 ---
 

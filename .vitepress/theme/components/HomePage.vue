@@ -14,12 +14,12 @@ const faqItems = [
   {
     question: "How does ClaGuard get my usage data?",
     answer:
-      "ClaGuard auto-configures Claude Code's built-in OpenTelemetry settings on first launch. No manual environment variables or API keys needed — just approve the permission on first run.",
+      "ClaGuard scrapes your usage directly from claude.ai using a built-in browser. Just sign in to your account during setup — no API keys or configuration needed.",
   },
   {
     question: "Does my data leave my machine?",
     answer:
-      "Never. All token and cost data is stored locally in a SQLite database on your device. ClaGuard has no backend, no cloud sync, and makes no network requests except the local OTLP receiver.",
+      "Never. All token and cost data is stored locally in a SQLite database on your device. ClaGuard has no backend, no cloud sync, and makes no external network requests except to claude.ai for syncing your usage.",
   },
   {
     question: "Can I set limits in tokens instead of dollars?",
@@ -127,12 +127,11 @@ const demoLines = [
           Set limits, get notified, stay in control — all from your system tray.
         </p>
         <div class="hero-actions">
-          <a href="https://github.com/webbegg/claguard/releases" class="hero-btn-primary">Follow Updates</a>
+          <a class="github-button" href="https://github.com/webbegg/claguard" data-color-scheme="no-preference: dark; light: dark; dark: dark;" data-size="large" data-show-count="true" aria-label="Follow @webbegg/claguard on GitHub">Follow</a>
           <a href="/guide/getting-started" class="hero-btn-secondary"
             >Read the docs →</a
           >
         </div>
-        <p class="hero-note">Follow releases for download updates</p>
       </div>
     </section>
 
@@ -162,11 +161,10 @@ const demoLines = [
       <div class="pillars-grid">
         <div class="pillar-card">
           <span class="pillar-number">01</span>
-          <h3 class="pillar-title">Install &amp; connect</h3>
+          <h3 class="pillar-title">Install &amp; sign in</h3>
           <p class="pillar-desc">
-            Download ClaGuard for your platform and launch it. On first run it
-            auto-configures Claude Code's OpenTelemetry settings — no manual
-            setup.
+            Download ClaGuard for your platform and launch it. Sign in to your
+            claude.ai account during setup — no API keys or configuration needed.
           </p>
         </div>
         <div class="pillar-card">
@@ -182,7 +180,7 @@ const demoLines = [
           <span class="pillar-number">03</span>
           <h3 class="pillar-title">Get alerted</h3>
           <p class="pillar-desc">
-            ClaGuard tracks every token in real time. Native desktop
+            ClaGuard syncs your usage every 10 minutes. Native desktop
             notifications fire the moment you cross a threshold. The tray icon
             shows your budget health at a glance.
           </p>
@@ -372,13 +370,7 @@ const demoLines = [
       <h2 class="download-heading">Coming Soon</h2>
       <p class="download-sub">ClaGuard is not yet available for download.</p>
       <p class="download-sub">
-        Follow
-        <a
-          href="https://github.com/webbegg/claguard/releases"
-          target="_blank"
-          rel="noopener"
-          >GitHub releases</a
-        >
+        <a class="github-button" href="https://github.com/webbegg/claguard" data-color-scheme="no-preference: dark; light: dark; dark: dark;" data-size="large" data-show-count="true" aria-label="Follow @webbegg/claguard on GitHub">Follow @webbegg/claguard</a>
         to be notified when it's ready.
       </p>
     </section>
@@ -422,7 +414,7 @@ const demoLines = [
         <h2 class="footer-cta-heading">
           Stop guessing what Claude Code costs you.
         </h2>
-        <a href="https://github.com/webbegg/claguard/releases" class="hero-btn-primary">Follow Updates</a>
+        <a class="github-button" href="https://github.com/webbegg/claguard" data-color-scheme="no-preference: dark; light: dark; dark: dark;" data-size="large" data-show-count="true" aria-label="Follow @webbegg/claguard on GitHub">Follow</a>
       </div>
     </section>
 

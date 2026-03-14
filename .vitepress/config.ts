@@ -14,6 +14,7 @@ export default defineConfig({
     ['meta', { property: 'og:description', content: 'Claude is powerful. Your budget has limits.' }],
     ['meta', { property: 'og:url',         content: 'https://claguard.com' }],
     ['meta', { name: 'twitter:card',       content: 'summary_large_image' }],
+    ['script', { async: '', defer: '', src: 'https://buttons.github.io/buttons.js' }],
   ],
 
   themeConfig: {
