@@ -1,0 +1,132 @@
+/* =========================================================
+   ClaGuard — VitePress theme overrides
+   Palette: Claude + Gruvbox dark (mirrors the desktop app)
+   ========================================================= */
+
+/* ── Brand tokens ─────────────────────────────────────────────────────────── */
+:root {
+  /* Core palette — matches desktop src/renderer/src/assets/base.css */
+  --cg-bg: #1e2021; /* --c-black      */
+  --cg-bg-soft: #252829; /* --c-black-soft  */
+  --cg-bg-mute: #2c2f30; /* --c-black-mute  */
+  --cg-border: #363b3c; /* --c-border      */
+  --cg-text: #c9b99a; /* --color-text    */
+  --cg-heading: #ebdbb2; /* --color-heading  */
+  --cg-gray-1: #7c6f64; /* --c-gray-1      */
+
+  /* Status / accent */
+  --cg-accent: #d4956a; /* --c-accent  (warm orange — primary brand) */
+  --cg-accent-dark: #b87a52;
+  --cg-accent-soft: rgba(212, 149, 106, 0.12);
+  --cg-ok: #8ec07c; /* --c-ok      */
+  --cg-warn: #d79921; /* --c-warn    */
+  --cg-danger: #e07866; /* --c-danger  */
+
+  /* VitePress brand overrides */
+  --vp-c-brand-1: var(--cg-accent);
+  --vp-c-brand-2: var(--cg-accent-dark);
+  --vp-c-brand-3: #e0a882;
+  --vp-c-brand-soft: var(--cg-accent-soft);
+
+  --vp-button-brand-bg: var(--cg-accent);
+  --vp-button-brand-hover-bg: var(--cg-accent-dark);
+  --vp-button-brand-active-bg: var(--cg-accent-dark);
+  --vp-button-brand-border: transparent;
+  --vp-button-brand-text: #1e2021;
+}
+
+/* ── Dark mode base ───────────────────────────────────────────────────────── */
+.dark {
+  --vp-c-bg: var(--cg-bg);
+  --vp-c-bg-soft: var(--cg-bg-soft);
+  --vp-c-bg-mute: var(--cg-bg-mute);
+  --vp-c-bg-alt: #1a1d1e;
+  --vp-c-divider: var(--cg-border);
+  --vp-c-gutter: var(--cg-border);
+  --vp-c-text-1: var(--cg-heading);
+  --vp-c-text-2: var(--cg-text);
+  --vp-c-text-3: var(--cg-gray-1);
+}
+
+/* ── Homepage layout — full width, no VitePress padding ──────────────────── */
+.VPContent.is-home {
+  padding: 0 !important;
+  max-width: none !important;
+  width: 100% !important;
+}
+
+.VPContent.is-home .VPHome {
+  padding: 0 !important;
+  max-width: none !important;
+  width: 100% !important;
+  margin-bottom: 0 !important;
+}
+
+.VPContent.is-home .container,
+.VPContent.is-home .VPHomeContent {
+  padding: 0 !important;
+  max-width: none !important;
+  width: 100% !important;
+}
+
+/* ── Nav — fully transparent ──────────────────────────────────────────────── */
+.dark.has-scrolled .Layout:has(.is-home) .VPNavBar {
+  background: rgba(30, 32, 33, 0.94) !important;
+  border-bottom: 1px solid var(--cg-border) !important;
+  backdrop-filter: blur(14px);
+}
+
+.Layout:has(.is-home) .VPNavBar .divider,
+.Layout:has(.is-home) .VPNavBar .divider-line {
+  display: none !important;
+}
+
+/* Nav text colors on homepage dark */
+.dark .Layout:has(.is-home) .VPNavBarTitle .title {
+  color: var(--cg-heading) !important;
+}
+.dark .Layout:has(.is-home) .VPNavBarMenuLink {
+  color: var(--cg-text) !important;
+}
+.dark .Layout:has(.is-home) .VPNavBarMenuLink:hover {
+  color: var(--cg-accent) !important;
+}
+.dark .Layout:has(.is-home) .VPSocialLink {
+  color: var(--cg-text) !important;
+}
+
+/* Hide search on homepage */
+.Layout:has(.is-home) .VPNavBarSearch {
+  display: none !important;
+}
+
+/* Logo size */
+.VPNavBarTitle .logo {
+  height: 34px;
+  width: auto;
+}
+
+/* ── Doc pages navbar ─────────────────────────────────────────────────────── */
+.VPNavBar {
+  background: transparent !important;
+  border-bottom-color: var(--cg-border) !important;
+}
+
+/* ── Docs content ─────────────────────────────────────────────────────────── */
+.dark .vp-doc h1,
+.dark .vp-doc h2,
+.dark .vp-doc h3 {
+  color: var(--cg-heading);
+}
+
+.dark .vp-doc a {
+  color: var(--cg-accent);
+}
+.dark .vp-doc a:hover {
+  color: var(--cg-accent-dark);
+}
+
+/* ── Sidebar ─────────────────────────────────────────────────────────────── */
+.dark .VPSidebarItem.is-active > .item .link {
+  color: var(--cg-accent);
+}
